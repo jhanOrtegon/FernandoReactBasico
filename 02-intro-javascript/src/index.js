@@ -5,9 +5,13 @@ const getGif = async () => {
     const peticion = await fetch(`${url}${apiKey}`);
     const respuesta = await peticion.json();
     const urlGif = respuesta.data.images.downsized_large.url;
-    console.log(urlGif);
+    insertarGif(urlGif)
 }
 
-// function insertarGif
+function insertarGif(gif) {
+    const img = document.createElement("img");
+    img.src = gif;
+    document.body.appendChild(img)
+}
 
-// getGif();
+getGif();
