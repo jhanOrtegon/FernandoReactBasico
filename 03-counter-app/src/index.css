@@ -5,3 +5,12 @@ html,body{
     font-size: 1.3rem;
     text-align: center;
 }
+
+button{
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+
+}
