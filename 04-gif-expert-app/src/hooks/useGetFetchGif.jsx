@@ -5,7 +5,7 @@ export const useGetFetchGif = (categoria) => {
 
     const [state, setstate] = useState({
         data: [],
-        loading: false
+        loading: true
     });
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export const useGetFetchGif = (categoria) => {
             .then(e => {
                 setstate({
                     data: e,
-                    loading: true
+                    loading: false
                 })
             })
     }, [categoria])
