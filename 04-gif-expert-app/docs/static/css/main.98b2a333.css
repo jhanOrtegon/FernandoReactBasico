@@ -1,0 +1,2 @@
+*{font-family:Victor Mono;font-weight:700}body{padding:10px}@media (min-width:600px){body{padding:60px}}input{color:grey;font-size:1.5rem;padding:5px;width:100%}#items{flex-wrap:wrap}#items,.card{display:flex;justify-content:center}.card{align-content:center;border:1px solid grey;border-radius:6px;flex-direction:column;flex-grow:1;margin:30px 10px 30px auto;max-height:300px;overflow:hidden}.card p{padding:5px;text-align:center}.card img{margin:auto;max-height:250px;max-width:450px}
+/*# sourceMappingURL=main.98b2a333.css.map*/
