@@ -4,7 +4,9 @@ import ReactDOM from 'react-dom';
 // import FormWitchCustomHook from './components/02-useEffect/FormWitchCustomHook';
 // import MultipleCustomHooks from './components/03-examples/MultipleCustomHooks';
 // import FocusScren from './components/04-useRef/FocusScren';
-import RealExampleRef from './components/04-useRef/RealExampleRef';
+// import RealExampleRef from './components/04-useRef/RealExampleRef';
+// import LayoutEffect from './components/05-useLayoutEffect/LayoutEffect';
+import Memo from './components/06-memo/Memo';
 import './index.css';
 // import { AppHook } from './AppHook';
 // import { CounterApp } from './components/01-useState/CounterApp';
@@ -12,7 +14,7 @@ import './index.css';
 
 
 ReactDOM.render(
-  <RealExampleRef />,
+  <Memo />,
   document.getElementById('root')
 );
 
