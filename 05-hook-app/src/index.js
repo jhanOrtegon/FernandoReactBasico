@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom';
 // import FocusScren from './components/04-useRef/FocusScren';
 // import RealExampleRef from './components/04-useRef/RealExampleRef';
 // import LayoutEffect from './components/05-useLayoutEffect/LayoutEffect';
-import Memo from './components/06-memo/Memo';
+// import Memo from './components/06-memo/Memo';
+// import MemoHook from './components/06-memo/MemoHook';
+import { CallBackHook } from './components/07-CallBackHook/CallBackHook';
 import './index.css';
 // import { AppHook } from './AppHook';
 // import { CounterApp } from './components/01-useState/CounterApp';
@@ -14,7 +16,7 @@ import './index.css';
 
 
 ReactDOM.render(
-  <Memo />,
+  <CallBackHook />,
   document.getElementById('root')
 );
 
