@@ -1,3 +1,11 @@
 ul li{
     list-style: none;
 }
+
+ul li p{
+    cursor: pointer;
+}
+
+.completed{
+    text-decoration: line-through;
+}

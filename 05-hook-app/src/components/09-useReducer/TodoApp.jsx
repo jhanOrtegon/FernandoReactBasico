@@ -1,76 +1,60 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import todoReducer from './todoReducer';
 import "./TodoApp.css"
+import { TodoList } from './TodoList';
+import { TodoAdd } from './TodoAdd';
 const TodoApp = () => {
 
-    const initial_state = [{
-        id: new Date().getTime(),
-        desc: "Aprendiendo React",
-        done: false
-    }]
+    const init = () => {
+        return JSON.parse(localStorage.getItem('todos')) || [];
+    }
 
-    const [todos, dispacher] = useReducer(todoReducer, initial_state);
+    const [todos, dispacher] = useReducer(todoReducer, [], init);
+
+    const [inputValor, setInputValor] = useState({ inputTodo: '' });
+
+    const handleChange = ({ target }) => setInputValor({ ...inputValor, [target.name]: target.value });
 
     const handleSubmit = e => {
         e.preventDefault();
-        let valorInput = e.target.inputTodo.value;
-        if (!valorInput.trim()) {
-            alert("digita un valor correcto");
-            return;
+
+        if (!inputValor.inputTodo.trim().length) {
+            alert("digita un valor correcto")
+            return
         }
 
-        const newTodo = {
-            id: new Date().getTime(),
-            desc: valorInput,
-            done: false
-        }
-
-        const action = {
+        dispacher({
             type: 'add',
-            payload: newTodo
-        }
-        dispacher(action)
-        console.log("xxx");
-        
-        e.target.inputTodo.value = ""
+            payload: {
+                id: new Date().getTime(),
+                desc: inputValor.inputTodo,
+                done: false
+            }
+        });
+
+        setInputValor({ inputTodo: '' });
     }
+
+    const handleDelete = id => dispacher({ type: 'delete', payload: id });
+    const handleToggle = id => dispacher({ type: 'toggle', payload: id });
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos]);
 
     return (
         <div className='container p-5'>
-            <h1>TODO APP ({todos.length})</h1>
+            <h1>TODO APP ({todos.length}) </h1>
             <hr />
             <div className="row">
                 <div className="col-5">
-                    <ul className='p-0'>
-                        {
-                            todos.map((todo, i) =>
-                            (
-                                <li key={todo.id} >
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <p className='m-0'><strong>{i + 1}.  </strong>{todo.desc}</p>
-                                        <button className='btn btn-danger'>Eliminar</button>
-                                    </div>
-                                    <hr />
-                                </li>
-                            ))
-                        }
-                    </ul>
+                    <TodoList todos={todos} handleToggle={handleToggle} handleDelete={handleDelete} />
                 </div>
                 <div className="col-7">
-                    <h3>Agregar TODO</h3>
-                    <hr />
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" className='form-control' name='inputTodo' />
-                        <button
-                            type='submit'
-                            className='btn btn-success text-center w-100 mt-2'
-                        >
-                            Agregar
-                        </button>
-                    </form>
+                    <TodoAdd handleSubmit={handleSubmit} handleChange={handleChange} inputValor={inputValor} />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
