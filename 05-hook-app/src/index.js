@@ -10,15 +10,16 @@ import ReactDOM from 'react-dom';
 // import MemoHook from './components/06-memo/MemoHook';
 // import { CallBackHook } from './components/07-CallBackHook/CallBackHook';
 // import { Padre } from './components/08-tarea-memo/Padre';
-import './index.css';
-import TodoApp from './components/09-useReducer/TodoApp';
+// import TodoApp from './components/09-useReducer/TodoApp';
 // import { AppHook } from './AppHook';
 // import { CounterApp } from './components/01-useState/CounterApp';
 // import CounterWithCustomHook from './components/01-useState/CounterWithCustomHook';
+import './index.css';
+import { MainApp } from './components/10-useContext/MainApp';
 
 
 ReactDOM.render(
-    <TodoApp />,
+    <MainApp />,
     document.getElementById('root')
 );
 
