@@ -4,12 +4,13 @@ import { MarvelScreen } from '../marvel/MarvelScreen';
 import { SearchScreen } from '../Search/SearchScreen';
 import React from 'react'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
+import { Navbar } from '../ui/Navbar';
 
 
 export const AppRouter = () => {
   return (
     <BrowserRouter>
-        <h1>Welcome AppRouter</h1>
+        <Navbar/>
         <Routes>
             <Route path='/dc' element={<DcScreen/>} exact />
             <Route path='/marvel' element={<MarvelScreen/>} exact/>
