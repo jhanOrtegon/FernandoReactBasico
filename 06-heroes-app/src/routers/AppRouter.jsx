@@ -1,4 +1,4 @@
-import { Login } from '../login/Login';
+import { Login } from '../components/login/Login';
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { DashboardRouter } from './DashboardRouter';
 
