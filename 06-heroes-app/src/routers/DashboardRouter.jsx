@@ -9,16 +9,16 @@ import { Hero } from '../components/hero/Hero';
 export const DashboardRouter = () => {
     return (
         <>
-        <Navbar/>
-        <div className="container">
-            <Routes>
-                <Route path='/dc' element={<DcScreen />} exact />
-                <Route path='/marvel' element={<MarvelScreen />} exact />
-                <Route path='/search' element={<SearchScreen />} exact />
-                <Route path='/hero' element={<Hero />} exact />
-                <Route path='/' element={<MarvelScreen />} exact />
-            </Routes>
-        </div>
+            <Navbar />
+            <div className="container">
+                <Routes>
+                    <Route path='/dc' element={<DcScreen />} exact />
+                    <Route path='/marvel' element={<MarvelScreen />} exact />
+                    <Route path='/search' element={<SearchScreen />} exact />
+                    <Route path='/hero/:heroId' element={<Hero />} exact />
+                    <Route path='/' element={<MarvelScreen />} exact />
+                </Routes>
+            </div>
         </>
     )
 }
