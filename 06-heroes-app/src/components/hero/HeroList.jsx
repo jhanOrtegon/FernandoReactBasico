@@ -1,23 +1,19 @@
-import React from 'react'
-import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher'
+import React from "react";
+import { getHeroesByPublisher } from "../../selectors/getHeroesByPublisher";
+import { HeroeCard } from "./HeroeCard";
 
-const HeroList = ({publisher}) => {
+const HeroList = ({ publisher }) => {
+    const heroesPublisher = getHeroesByPublisher(publisher);
 
-const heroesPublisher = getHeroesByPublisher(publisher);
-
-  return (
-    <>
-        <ul>
+    return (
+        <div className="row rows-cols-1 row-cols-md-3 g-3">
             {
-                heroesPublisher.map(({id, superhero}) =>(
-                    <li key={id}>
-                        {superhero}
-                    </li>
+                heroesPublisher.map(hero => (
+                    <HeroeCard key={hero.id} {...hero} />
                 ))
             }
-        </ul>   
-    </>
-  )
-}
+        </div>
+    );
+};
 
-export default HeroList
+export default HeroList;
