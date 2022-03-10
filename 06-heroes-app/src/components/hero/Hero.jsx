@@ -1,24 +1,22 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { getHeroesById } from '../../selectors/getHeroeById';
 
 export const Hero = () => {
 
   const { heroId } = useParams();
-  const objHero = getHeroesById(heroId)
+  const objHero = useMemo(() => getHeroesById(heroId), [heroId])
   const navigate = useNavigate();
 
   if (!objHero) {
     return <Navigate to={'/'} />
   }
-
-
   const imgPath = `/assets/imgs/${heroId}.jpg`;
   const handleReturn = () => {
     navigate(-1);
   }
   return (
-    <div className='row mt-5'>
+    <div className='row mt-5 animate__animated animate__fadeIn'>
       <div className="col-4">
         <img src={imgPath} alt={objHero.superhero} className='img-thumbnail h-75 w-100 p-2' />
       </div>
@@ -36,8 +34,7 @@ export const Hero = () => {
           className='btn btn-outline-dark'
           onClick={handleReturn}
         >
-          Regresar
-        </button>
+          Regresar        </button>
       </div>
     </div>
 
