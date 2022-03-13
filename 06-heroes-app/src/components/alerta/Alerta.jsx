@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Alerta = (mensaje, stylo) => {
+export const Alerta = ({ mensaje, stylo }) => {
     return (
-        <div class={`alert alert-${stylo}`} role="alert" >
-            ${mensaje}
+        <div className={`alert alert-${stylo} text-center mt-4`} role="alert" >
+            {mensaje}
         </div >
     )
 }

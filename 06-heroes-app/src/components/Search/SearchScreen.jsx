@@ -1,31 +1,25 @@
 import React, { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import getHeroeByName from '../../selectors/getHeroeByName';
 import { Alerta } from '../alerta/Alerta';
 import { HeroeCard } from '../hero/HeroeCard';
-// import { Alerta } from '../../alerta/Alerta';
+import queryString from "query-string";
 
 export const SearchScreen = () => {
 
-
-  const { handleChange, clearForm, formValues } = useForm({ inputHeroe: '' });
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { q = '' } = queryString.parse(location.search)
+  const { handleChange, formValues } = useForm({ inputHeroe: q });
   const { inputHeroe } = formValues
-  const [heroes, setHeroes] = useState({ estado: false, data: null })
+  const heroe = getHeroeByName(inputHeroe) || false
+  const [hero, setHero] = useState(heroe)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (inputHeroe.length < 2) {
-      <Alerta stylo='danger' mensaje='error , debes tener 3 o mas caracteres' />
-      setHeroes({ estado: false, data: null })
-      return
-    }
-
-    const heroe = getHeroeByName(inputHeroe)
-    console.log(heroe);
-    setHeroes({ estado: true, data: heroe })
-
-    clearForm();
+    navigate(`?q=${inputHeroe}`);
+    setHero(heroe)
   }
 
   return (
@@ -35,7 +29,7 @@ export const SearchScreen = () => {
         <hr />
         <h5>Buscar</h5>
         <hr />
-        <form id="formulario" className='' onSubmit={handleSubmit}>
+        <form id="formulario" onSubmit={handleSubmit}>
           <input
             type="text"
             className='form-control'
@@ -53,25 +47,24 @@ export const SearchScreen = () => {
           </button>
 
         </form>
+        {
+          !hero[0] ?
+            <Alerta stylo='danger' mensaje='Error, Heroe no Encontrado' />
+            : ''
+        }
       </div>
 
       <div className="col-7">
+        <h4>Resultados</h4>
+        <hr />
         {
-          heroes.estado ?
-            <>
-              <h4>Resultados</h4>
-              <hr />
-            </>
-            : ''
-        }
-
-        {
-          heroes.estado
+          hero
             ?
-            heroes.data.map((hero) => (
+            hero.map((hero) => (
+
               <HeroeCard key={hero.id} {...hero} />
-            ))
-            : ''
+
+            )) : ''
         }
       </div>
 
