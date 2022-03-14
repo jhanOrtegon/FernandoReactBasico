@@ -15,7 +15,6 @@ export const SearchScreen = () => {
   const { handleChange, formValues } = useForm({ inputHeroe: q });
   const { inputHeroe } = formValues
 
-
   const heroe = useMemo(() => getHeroeByName(q) || false, [q])
 
   const handleSubmit = (e) => {
@@ -30,6 +29,7 @@ export const SearchScreen = () => {
         <hr />
         <h5>Buscar</h5>
         <hr />
+
         <form id="formulario" onSubmit={handleSubmit}>
           <input
             type="text"
