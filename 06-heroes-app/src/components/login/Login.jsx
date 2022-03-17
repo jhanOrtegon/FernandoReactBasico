@@ -6,8 +6,13 @@ import { types } from '../../types/types';
 export const Login = () => {
 
   const { dispatch } = useContext(AuthContext)
+  const { lastPath } = JSON.parse(localStorage.getItem('lastPath')) || '/marvel';
+  const { parameters } = JSON.parse(localStorage.getItem('lastParameters')) || '';
 
+  const lastPathParameters = `${lastPath}${parameters}`;
   const navigate = useNavigate();
+
+  console.log(lastPathParameters);
 
   const handleLogin = () => {
     const action = {
@@ -17,13 +22,11 @@ export const Login = () => {
 
     dispatch(action)
 
-    navigate('/marvel', {
+    navigate(lastPathParameters, {
       replace: true
     })
 
   }
-
-
 
   return (
     <div className='conteiner mt-2'>
