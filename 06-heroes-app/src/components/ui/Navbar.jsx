@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../auth/authContext';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
 
     const navigate = useNavigate();
+    const { user, dispatch } = useContext(AuthContext)
 
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark p-2">
@@ -34,13 +37,6 @@ export const Navbar = () => {
 
                         <NavLink
                             className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
-                            to="/hero"
-                        >
-                            Hero
-                        </NavLink>
-
-                        <NavLink
-                            className={({ isActive }) => 'nav-item nav-link ' + (isActive ? 'active' : '')}
                             to="/search"
                         >
                             Search
@@ -53,13 +49,22 @@ export const Navbar = () => {
                         <span
                             className="nav-item nav-link text-info"
                         >
-                            Jhan Carlos
+                            {user.name}
                         </span>
                         <button
                             className="nav-item nav-link btn"
-                            onClick={() => navigate('/login', {
-                                replace: true
-                            })}
+                            onClick={() => {
+                                const action = {
+                                    type: types.logout
+                                }
+                                dispatch(action);
+
+                                
+
+                                navigate('/login', {
+                                    replace: true
+                                })
+                            }}
                         >
                             Logout
                         </button>
