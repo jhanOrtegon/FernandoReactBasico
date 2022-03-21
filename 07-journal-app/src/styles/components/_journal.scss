@@ -1,0 +1,32 @@
+.journal__main-content{
+    display: flex;
+}
+
+.journal__sidebar{
+    background-color: $dark-grey;    
+    width: 600px;
+    padding: 10px;
+    height: 100vh;
+}
+
+.journal__sidebar-navbar{
+    color: $white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.journal__new-entry{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    transition: color ease .5s;
+
+    &:hover{
+        color: lighten($color: $dark-grey, $amount: 40);
+        cursor: pointer;
+    }
+}

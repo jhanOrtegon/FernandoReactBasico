@@ -1,0 +1,10 @@
+.link{
+    text-decoration: none;
+    color: $dark-grey;
+    display: block;
+    margin: 10px auto;
+
+    &:hover{
+        text-decoration: underline;
+    }
+}
