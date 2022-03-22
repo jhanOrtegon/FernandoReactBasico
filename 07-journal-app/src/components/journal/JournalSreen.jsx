@@ -1,4 +1,5 @@
 import React from 'react'
+import { NothingSelect } from './NothingSelect'
 import { Sidebar } from './Sidebar'
 
 const JournalSreen = () => {
@@ -7,7 +8,7 @@ const JournalSreen = () => {
             <Sidebar />
 
             <main>
-                Main Content
+                <NothingSelect />
             </main>
 
         </div>
