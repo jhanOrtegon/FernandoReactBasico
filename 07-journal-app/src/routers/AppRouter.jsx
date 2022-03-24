@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import JournalSreen from '../journal/JournalSreen'
+import JournalSreen from '../components/journal/JournalSreen'
 import { AuthRouter } from './AuthRouter'
 
 export const AppRouter = () => {

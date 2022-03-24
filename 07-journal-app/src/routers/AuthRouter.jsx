@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { LoginSreen } from '../auth/LoginSreen'
-import { RegisterScreen } from '../auth/RegisterScreen'
+import { LoginSreen } from '../components/auth/LoginSreen'
+import { RegisterScreen } from '../components/auth/RegisterScreen'
 
 export const AuthRouter = () => {
     return (
