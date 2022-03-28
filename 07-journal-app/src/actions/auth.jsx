@@ -5,4 +5,4 @@ export const login = (uid, displayName) => ({
     payload: {
         uid, displayName
     }
-})
+}) 
