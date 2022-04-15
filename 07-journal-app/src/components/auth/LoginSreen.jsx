@@ -1,8 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { login } from '../../actions/auth'
+import { loginAsync, startGoogleLogin } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
+import validator from "validator";
+import { uiRemoveError, uiSetError } from '../../actions/ui'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 export const LoginSreen = () => {
 
@@ -10,28 +14,49 @@ export const LoginSreen = () => {
         'email': '',
         'password': ''
     }
-    const dispath = useDispatch();
 
-    const [values, handleInputChange, reset] = useForm(initialState);
+    const dispath = useDispatch();
+    const state = useSelector((state) => state.ui)
+    const { msgError, loading } = state
+
+    const [values, handleInputChange] = useForm(initialState);
+    const { email, password } = values;
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (Object.values(values).every(e => e === '')) {
-            alert('el email y el password , no deben estar vacios');
-            return;
+        if (validateForm()) {
+            dispath(loginAsync(email, password));
+            !msgError && navigate('/')
         }
+    }
 
-        alert('todo ha ido bien');
+    const validateForm = () => {
+        if (!validator.isEmail(email)) {
+            dispath(uiSetError('digita un correo Correcto'))
+            return
+        } else if (password.trim().length < 3) {
+            dispath(uiSetError('digita un password Correcto'))
+            return
+        }
+        dispath(uiRemoveError())
+        return true;
+    }
 
-        dispath(login(new Date().getTime(), values.email))
-
-        reset();
+    const handleGoogleLogin = () => {
+        dispath(startGoogleLogin());
     }
 
     return (
         <>
             <h3 className='auth__title'>Login</h3>
+            {
+                msgError &&
+                <div className='auth__alert-error'>
+                    {msgError.err}
+                </div>
+            }
             <form action="" onSubmit={handleSubmit}>
                 <input
                     onChange={handleInputChange}
@@ -56,6 +81,7 @@ export const LoginSreen = () => {
                 <button
                     type='submit'
                     className='btn btn-primary btn-block'
+                    disabled={loading}
                 >
                     Login
                 </button>
@@ -64,6 +90,7 @@ export const LoginSreen = () => {
 
                 <div
                     className="google-btn mb-3"
+                    onClick={handleGoogleLogin}
                 >
                     <div className="google-icon-wrapper">
                         <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />

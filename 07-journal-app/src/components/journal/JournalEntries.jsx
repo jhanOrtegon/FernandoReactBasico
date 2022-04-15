@@ -8,7 +8,7 @@ export const JournalEntries = () => {
         <div className='journal__entries'>
             {
                 entries.map(value => (
-                    <JournalEntry />
+                    <JournalEntry key={value} />
                 ))
             }
         </div>
