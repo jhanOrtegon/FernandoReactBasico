@@ -1,4 +1,5 @@
 import { googleAuthProvider } from "../firebase/firebase-config";
+import Swal from 'sweetalert2'
 import { firebase } from "../firebase/firebase-config";
 import { types } from "../types/types";
 import { uiFinishLogin, uiRemoveError, uiSetError, uiStartLogin } from "./ui";
@@ -15,7 +16,7 @@ export const loginAsync = (email, password) => {
         } catch (error) {
             dispatch(uiSetError(error.message))
             dispatch(uiFinishLogin(true))
-
+            Swal.fire('Error', error.message, 'error')
         }
 
 
