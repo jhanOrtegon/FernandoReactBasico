@@ -15,9 +15,39 @@ export const startNewNote = () => {
     }
 }
 
-export const notesNewNota = (id, newNota) => {
+export const notesNewNota = (newNota) => {
     return {
         type: types.notesNewNota,
         payload: { ...newNota }
+    }
+}
+
+export const loadNotesAction = (notes) => {
+    return {
+        type: types.loadNotes,
+        payload: notes
+    }
+}
+
+export const noteSave = (note) => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth
+        const saveNote = { ...note }
+        delete saveNote.id
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(saveNote)
+        dispatch(noteUpdate(note.id, saveNote))
+    }
+}
+
+export const noteUpdate = (id, note) => {
+    return {
+        type: types.updateNote,
+        payload: {
+            id,
+            note: {
+                id,
+                notes: { ...note }
+            }
+        }
     }
 }

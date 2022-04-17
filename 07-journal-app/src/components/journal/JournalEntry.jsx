@@ -1,23 +1,42 @@
 import React from 'react'
+import moment from 'moment'
+import { useDispatch } from 'react-redux';
+import { notesNewNota } from '../../actions/notes';
 
-export const JournalEntry = () => {
+export const JournalEntry = ({ id, body, url, title, date }) => {
+
+    const noteDate = moment(date)
+    const dispatch = useDispatch();
+
+    const handleSelect = () => {
+        const selectEntry = {
+            body, title, date, id
+        }
+
+        dispatch(notesNewNota(selectEntry))
+    }
+
     return (
-        <div className='journal__entry'>
-            <div
-                className='journal__entry-picture'
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: 'url(https://i.pinimg.com/736x/cc/4b/a7/cc4ba7b75bffe13fab8bed123f6ff6ff.jpg)'
-                }}
-            ></div>
+        <div className='journal__entry' onClick={handleSelect}>
+            {
+                (url !== undefined)
+                && <div
+                    className='journal__entry-picture'
+                    style={{
+                        backgroundSize: 'cover',
+                        backgroundImage: `url(${url})`
+                    }}
+                >
+                </div>
+            }
 
             <div className="journal__entry-body">
-                <p className='journal__entry-title'>un nuevo dia</p>
-                <p className='journal__entry-content'>Lorem ipsum dolor, sit amet consectetur adipisicing elit.,</p>
+                <p className='journal__entry-title'>{title}</p>
+                <p className='journal__entry-content'>{body}</p>
             </div>
             <div className="journal__entry-date">
-                <p>Monday</p>
-                <strong>21</strong>
+                <p>{noteDate.format('ddd')}</p>
+                <strong>{noteDate.format('Do')}</strong>
             </div>
         </div>
     )
