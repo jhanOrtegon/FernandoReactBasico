@@ -4,5 +4,6 @@ export const types = {
     uiSetError: '[UI] Set Error',
     uiRemoveError: '[UI] Remove Error',
     uiStartLogin: '[UI] Start Login',
-    uiFinishLogin: '[UI] Finish Login'
+    uiFinishLogin: '[UI] Finish Login',
+    notesNewNota: '[Notes] New Nota'
 }

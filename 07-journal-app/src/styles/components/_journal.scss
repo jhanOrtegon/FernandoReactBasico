@@ -17,6 +17,15 @@
     padding: 10px;
 }
 
+.journal__sidebar-navbar button, .journal__sidebar-navbar h3{
+    flex: 1;
+    text-align: center;
+}
+
+.journal__sidebar-navbar button:hover{
+    background: white;
+    color: black;
+}
 .journal__new-entry{
     color: white;
     display: flex;
