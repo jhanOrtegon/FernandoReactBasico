@@ -1,3 +1,4 @@
+import Swal from "sweetalert2"
 import { db } from "../firebase/firebase-config"
 import { types } from "../types/types"
 
@@ -36,6 +37,7 @@ export const noteSave = (note) => {
         delete saveNote.id
         await db.doc(`${uid}/journal/notes/${note.id}`).update(saveNote)
         dispatch(noteUpdate(note.id, saveNote))
+        Swal.fire('Guardado','Mensaje Guardado Exitosamente','success')
     }
 }
 
