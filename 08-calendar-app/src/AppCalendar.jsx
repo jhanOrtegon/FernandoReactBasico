@@ -1,9 +1,10 @@
 import React from "react"
+import AppRoutes from "./routes/AppRoutes"
 
-export const AppCalendar = ()=>{
+export const AppCalendar = () => {
     return (
         <>
-        <h1>Hola Mundo</h1>
+            <AppRoutes />
         </>
     )
 }
